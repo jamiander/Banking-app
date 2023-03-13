@@ -1,17 +1,17 @@
 <script lang="ts">
 	import type { GetTransactionsDocument, GetTransactionsQuery } from "../graphql/graphql";
     export let transactions: GetTransactionsQuery['BankingApp'] = [];
-    //export let total: Number;
+    export let total: Number;
 
 </script>
 
 <div>
 
-<!--<h2> Total: {total}</h2>-->
+<h2> Total: {total}</h2>
 
     <table class='table-fixed'>
         <thead class="border-b font-medium dark:border-neutral-500">
-            <th scope="col" class="px-15 s py-4">Amount</th>
+            <th scope="col" class="px-15 py-4">Amount</th>
             <th scope="col" class="px-15 py-4">Description</th>
             <th scope="col" class="px-15 py-4">Category</th>
             <th scope="col" class="px-15 py-4">Transaction Date</th>

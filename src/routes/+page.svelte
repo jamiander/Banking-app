@@ -12,10 +12,10 @@
         const response = await graphqlGetTransactions({});
         const result = await graphqlGetTotals({});
         transactions = response.data.BankingApp
-        total = Number(result.data.BankingApp_aggregate.aggregate?.sum)
+        total = result.data.BankingApp_aggregate.aggregate?.sum?.amount
 
         console.log(transactions);
     })
 
 </script>
-<Transactions {transactions}/>
+<Transactions {transactions} {total}/>
