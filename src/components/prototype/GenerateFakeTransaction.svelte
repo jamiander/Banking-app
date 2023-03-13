@@ -36,7 +36,7 @@
 		disabled = true;
 		const body = JSON.stringify({
 			query:
-				'mutation insertTransactions($objects: [transaction_insert_input!]!){\n  insert_transaction(objects: $objects){\n    affected_rows\n  }\n}',
+				'mutation insertTransactions($objects: [BankingApp_insert_input!]!){\n  insert_BankingApp(objects: $objects){\n    affected_rows\n  }\n}',
 			variables: {
 				objects: [...Array(10).keys()].map(generateTransaction)
 			}

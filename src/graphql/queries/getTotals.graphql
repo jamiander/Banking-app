@@ -1,0 +1,13 @@
+query getTotals{
+  BankingApp_aggregate {
+    aggregate {
+      count
+      sum {
+        amount
+      }
+    }
+    nodes {
+      amount
+    }
+  }
+}
