@@ -2,18 +2,19 @@ Phase 1
 
 Design the graphql API such that this query & mutation work:
 
-```query getTransactions {
-	transaction {
-		id
-		createdAt
-		updatedAt
-		description
-		amount
-		status
-		category
-		transactionDate
-		postDate
-	}
+```
+query getTransactions {
+  transaction {
+    id
+    createdAt
+    updatedAt
+    description
+    amount
+    status
+    category
+    transactionDate
+    postDate
+  }
 }
 ```
 
