@@ -1,21 +1,17 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import type { GetTotalsQuery, GetTransactionsQuery } from '../graphql/graphql';
-	import { graphqlGetTotals, graphqlGetTransactions } from '../graphql/graphqlApi';
-    import Transactions from '../components/Transactions.svelte'
+	//import { breadCrumbStore } from '../breadCrumbStore';
 
-
-    let transactions: GetTransactionsQuery['BankingApp'];
-    let total: number;
-
-    onMount(async () => {
-        const response = await graphqlGetTransactions({});
-        const result = await graphqlGetTotals({});
-        transactions = response.data.BankingApp
-        total = result.data.BankingApp_aggregate.aggregate?.sum?.amount
-
-        console.log(transactions);
-    })
-
+	//$breadCrumbStore = [{ name: 'home', url: '/' }];
 </script>
-<Transactions {transactions} {total}/>
+
+<div>Home</div>
+<div>
+	<a href="/accounts" class="underline text-blue-500">Go to accounts</a>
+</div>
+<div>
+	<a
+		href="/accounts/db3e7234-c5a1-477b-9ae2-128c23b1d454/transactions"
+		class="underline text-blue-500"
+		>Go to accounts/db3e7234-c5a1-477b-9ae2-128c23b1d454/transactions</a
+	>
+</div>

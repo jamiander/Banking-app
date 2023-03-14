@@ -25,18 +25,21 @@
 			category,
 			status,
 			transactionDate,
-			postDate
+			postDate,
+			accountId
 		};
 	}
 
 	let result = '';
 	let statusCode = '';
 	let disabled = false;
+	let accountId = '';
+	$: disabled = accountId === '';
 	async function generate() {
 		disabled = true;
 		const body = JSON.stringify({
 			query:
-				'mutation insertTransactions($objects: [BankingApp_insert_input!]!){\n  insert_BankingApp(objects: $objects){\n    affected_rows\n  }\n}',
+				'mutation insertTransactions($objects: [Transactions_insert_input!]!){\n  insert_Transactions(objects: $objects){\n    affected_rows\n  }\n}',
 			variables: {
 				objects: [...Array(10).keys()].map(generateTransaction)
 			}
@@ -73,13 +76,16 @@
 </script>
 
 <div class="m-1 p-2 rounded-lg border border-cyan-500">
-	<button
+	<span>Acccount Id</span><input
+		bind:value={accountId}
+		class="border border-blue-500 rounded-lg p-1"
+	/>
+		<button
 		class="rounded-lg border border-blue-600 bg-blue-500 p-2 m-1 text-white {disabled
 			? 'opacity-50 cursor-not-allowed'
 			: ''}"
 		on:click={generate}
-		{disabled}>Generate 10 Transactions</button
-	>
+		{disabled}>Generate 10 Transactions</button>
 	<div>
 		<div>Response</div>
 		<div>Status Code: {statusCode}</div>

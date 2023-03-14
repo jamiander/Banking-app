@@ -1,7 +1,6 @@
-query getTotals{
-  Transactions_aggregate {
+query getCompletedTotal{
+  Transactions_aggregate(where: {status: {_eq: "completed"}}){
     aggregate {
-      count
       sum {
         amount
       }

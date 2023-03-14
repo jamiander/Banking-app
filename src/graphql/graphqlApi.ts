@@ -1,4 +1,4 @@
-import { GetTotalsDocument, GetTransactionsDocument, type GetTotalsQuery, type GetTotalsQueryVariables, type GetTransactionsQuery, type GetTransactionsQueryVariables } from "./graphql";
+import { GetCompletedTotalDocument, GetPendingTotalDocument, GetTotalsDocument, GetTransactionsDocument, type GetCompletedTotalQuery, type GetCompletedTotalQueryVariables, type GetPendingTotalQuery, type GetPendingTotalQueryVariables, type GetTotalsQuery, type GetTotalsQueryVariables, type GetTransactionsQuery, type GetTransactionsQueryVariables } from "./graphql";
 import { print } from "graphql";
 import { env } from "$env/dynamic/public";
 
@@ -34,4 +34,28 @@ export async function graphqlGetTotals(variables: GetTotalsQueryVariables) {
         })
     })
     return await request.json() as GraphQLResponse<GetTotalsQuery>;
+}
+
+export async function graphqlGetCompletedTotal(variables: GetCompletedTotalQueryVariables) {
+    const request = await fetch(env.PUBLIC_HASURA_URL, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+            query: print(GetCompletedTotalDocument),
+            variables
+        })
+    })
+    return await request.json() as GraphQLResponse<GetCompletedTotalQuery>;
+}
+
+export async function graphqlGetPendingTotal(variables: GetPendingTotalQueryVariables) {
+    const request = await fetch(env.PUBLIC_HASURA_URL, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+            query: print(GetPendingTotalDocument),
+            variables
+        })
+    })
+    return await request.json() as GraphQLResponse<GetPendingTotalQuery>;
 }

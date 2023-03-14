@@ -1,5 +1,5 @@
-mutation insertTransactions($objects: [BankingApp_insert_input!]!){
-  insert_BankingApp(objects: $objects){
+mutation insertTransactions($objects: [Transactions_insert_input!]!){
+  insert_Transactions(objects: $objects){
     affected_rows
   }
 }

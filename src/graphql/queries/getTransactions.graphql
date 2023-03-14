@@ -1,5 +1,5 @@
 query getTransactions{
-  BankingApp{ 
+  Transactions{ 
   	id
     createdAt
     updatedAt

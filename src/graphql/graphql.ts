@@ -17,285 +17,179 @@ export type Scalars = {
   uuid: any;
 };
 
-/** columns and relationships of "BankingApp" */
-export type BankingApp = {
-  __typename?: 'BankingApp';
-  amount: Scalars['money'];
-  category: Scalars['String'];
-  createdAt?: Maybe<Scalars['String']>;
-  description: Scalars['String'];
+/** columns and relationships of "Accounts" */
+export type Accounts = {
+  __typename?: 'Accounts';
+  /** An array relationship */
+  BankingApps: Array<Transactions>;
+  /** An aggregate relationship */
+  BankingApps_aggregate: Transactions_Aggregate;
   id: Scalars['uuid'];
-  postDate?: Maybe<Scalars['date']>;
-  status: Scalars['String'];
-  transactionDate?: Maybe<Scalars['date']>;
-  updatedAt?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
-/** aggregated selection of "BankingApp" */
-export type BankingApp_Aggregate = {
-  __typename?: 'BankingApp_aggregate';
-  aggregate?: Maybe<BankingApp_Aggregate_Fields>;
-  nodes: Array<BankingApp>;
+
+/** columns and relationships of "Accounts" */
+export type AccountsBankingAppsArgs = {
+  distinct_on?: InputMaybe<Array<Transactions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transactions_Order_By>>;
+  where?: InputMaybe<Transactions_Bool_Exp>;
 };
 
-/** aggregate fields of "BankingApp" */
-export type BankingApp_Aggregate_Fields = {
-  __typename?: 'BankingApp_aggregate_fields';
-  avg?: Maybe<BankingApp_Avg_Fields>;
+
+/** columns and relationships of "Accounts" */
+export type AccountsBankingApps_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Transactions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transactions_Order_By>>;
+  where?: InputMaybe<Transactions_Bool_Exp>;
+};
+
+/** aggregated selection of "Accounts" */
+export type Accounts_Aggregate = {
+  __typename?: 'Accounts_aggregate';
+  aggregate?: Maybe<Accounts_Aggregate_Fields>;
+  nodes: Array<Accounts>;
+};
+
+/** aggregate fields of "Accounts" */
+export type Accounts_Aggregate_Fields = {
+  __typename?: 'Accounts_aggregate_fields';
   count: Scalars['Int'];
-  max?: Maybe<BankingApp_Max_Fields>;
-  min?: Maybe<BankingApp_Min_Fields>;
-  stddev?: Maybe<BankingApp_Stddev_Fields>;
-  stddev_pop?: Maybe<BankingApp_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<BankingApp_Stddev_Samp_Fields>;
-  sum?: Maybe<BankingApp_Sum_Fields>;
-  var_pop?: Maybe<BankingApp_Var_Pop_Fields>;
-  var_samp?: Maybe<BankingApp_Var_Samp_Fields>;
-  variance?: Maybe<BankingApp_Variance_Fields>;
+  max?: Maybe<Accounts_Max_Fields>;
+  min?: Maybe<Accounts_Min_Fields>;
 };
 
 
-/** aggregate fields of "BankingApp" */
-export type BankingApp_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<BankingApp_Select_Column>>;
+/** aggregate fields of "Accounts" */
+export type Accounts_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Accounts_Select_Column>>;
   distinct?: InputMaybe<Scalars['Boolean']>;
 };
 
-/** aggregate avg on columns */
-export type BankingApp_Avg_Fields = {
-  __typename?: 'BankingApp_avg_fields';
-  amount?: Maybe<Scalars['Float']>;
-};
-
-/** Boolean expression to filter rows from the table "BankingApp". All fields are combined with a logical 'AND'. */
-export type BankingApp_Bool_Exp = {
-  _and?: InputMaybe<Array<BankingApp_Bool_Exp>>;
-  _not?: InputMaybe<BankingApp_Bool_Exp>;
-  _or?: InputMaybe<Array<BankingApp_Bool_Exp>>;
-  amount?: InputMaybe<Money_Comparison_Exp>;
-  category?: InputMaybe<String_Comparison_Exp>;
-  createdAt?: InputMaybe<String_Comparison_Exp>;
-  description?: InputMaybe<String_Comparison_Exp>;
+/** Boolean expression to filter rows from the table "Accounts". All fields are combined with a logical 'AND'. */
+export type Accounts_Bool_Exp = {
+  BankingApps?: InputMaybe<Transactions_Bool_Exp>;
+  BankingApps_aggregate?: InputMaybe<Transactions_Aggregate_Bool_Exp>;
+  _and?: InputMaybe<Array<Accounts_Bool_Exp>>;
+  _not?: InputMaybe<Accounts_Bool_Exp>;
+  _or?: InputMaybe<Array<Accounts_Bool_Exp>>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
-  postDate?: InputMaybe<Date_Comparison_Exp>;
-  status?: InputMaybe<String_Comparison_Exp>;
-  transactionDate?: InputMaybe<Date_Comparison_Exp>;
-  updatedAt?: InputMaybe<String_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
 };
 
-/** unique or primary key constraints on table "BankingApp" */
-export enum BankingApp_Constraint {
+/** unique or primary key constraints on table "Accounts" */
+export enum Accounts_Constraint {
   /** unique or primary key constraint on columns "id" */
-  BankingAppPkey = 'BankingApp_pkey'
+  AccountsPkey = 'Accounts_pkey'
 }
 
-/** input type for incrementing numeric columns in table "BankingApp" */
-export type BankingApp_Inc_Input = {
-  amount?: InputMaybe<Scalars['money']>;
-};
-
-/** input type for inserting data into table "BankingApp" */
-export type BankingApp_Insert_Input = {
-  amount?: InputMaybe<Scalars['money']>;
-  category?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
+/** input type for inserting data into table "Accounts" */
+export type Accounts_Insert_Input = {
+  BankingApps?: InputMaybe<Transactions_Arr_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['uuid']>;
-  postDate?: InputMaybe<Scalars['date']>;
-  status?: InputMaybe<Scalars['String']>;
-  transactionDate?: InputMaybe<Scalars['date']>;
-  updatedAt?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
-export type BankingApp_Max_Fields = {
-  __typename?: 'BankingApp_max_fields';
-  amount?: Maybe<Scalars['money']>;
-  category?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
+export type Accounts_Max_Fields = {
+  __typename?: 'Accounts_max_fields';
   id?: Maybe<Scalars['uuid']>;
-  postDate?: Maybe<Scalars['date']>;
-  status?: Maybe<Scalars['String']>;
-  transactionDate?: Maybe<Scalars['date']>;
-  updatedAt?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
-export type BankingApp_Min_Fields = {
-  __typename?: 'BankingApp_min_fields';
-  amount?: Maybe<Scalars['money']>;
-  category?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
+export type Accounts_Min_Fields = {
+  __typename?: 'Accounts_min_fields';
   id?: Maybe<Scalars['uuid']>;
-  postDate?: Maybe<Scalars['date']>;
-  status?: Maybe<Scalars['String']>;
-  transactionDate?: Maybe<Scalars['date']>;
-  updatedAt?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
 };
 
-/** response of any mutation on the table "BankingApp" */
-export type BankingApp_Mutation_Response = {
-  __typename?: 'BankingApp_mutation_response';
+/** response of any mutation on the table "Accounts" */
+export type Accounts_Mutation_Response = {
+  __typename?: 'Accounts_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
-  returning: Array<BankingApp>;
+  returning: Array<Accounts>;
 };
 
-/** on_conflict condition type for table "BankingApp" */
-export type BankingApp_On_Conflict = {
-  constraint: BankingApp_Constraint;
-  update_columns?: Array<BankingApp_Update_Column>;
-  where?: InputMaybe<BankingApp_Bool_Exp>;
+/** on_conflict condition type for table "Accounts" */
+export type Accounts_On_Conflict = {
+  constraint: Accounts_Constraint;
+  update_columns?: Array<Accounts_Update_Column>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
 };
 
-/** Ordering options when selecting data from "BankingApp". */
-export type BankingApp_Order_By = {
-  amount?: InputMaybe<Order_By>;
-  category?: InputMaybe<Order_By>;
-  createdAt?: InputMaybe<Order_By>;
-  description?: InputMaybe<Order_By>;
+/** Ordering options when selecting data from "Accounts". */
+export type Accounts_Order_By = {
+  BankingApps_aggregate?: InputMaybe<Transactions_Aggregate_Order_By>;
   id?: InputMaybe<Order_By>;
-  postDate?: InputMaybe<Order_By>;
-  status?: InputMaybe<Order_By>;
-  transactionDate?: InputMaybe<Order_By>;
-  updatedAt?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
 };
 
-/** primary key columns input for table: BankingApp */
-export type BankingApp_Pk_Columns_Input = {
+/** primary key columns input for table: Accounts */
+export type Accounts_Pk_Columns_Input = {
   id: Scalars['uuid'];
 };
 
-/** select columns of table "BankingApp" */
-export enum BankingApp_Select_Column {
-  /** column name */
-  Amount = 'amount',
-  /** column name */
-  Category = 'category',
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  Description = 'description',
+/** select columns of table "Accounts" */
+export enum Accounts_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  PostDate = 'postDate',
-  /** column name */
-  Status = 'status',
-  /** column name */
-  TransactionDate = 'transactionDate',
-  /** column name */
-  UpdatedAt = 'updatedAt'
+  Name = 'name'
 }
 
-/** input type for updating data in table "BankingApp" */
-export type BankingApp_Set_Input = {
-  amount?: InputMaybe<Scalars['money']>;
-  category?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
+/** input type for updating data in table "Accounts" */
+export type Accounts_Set_Input = {
   id?: InputMaybe<Scalars['uuid']>;
-  postDate?: InputMaybe<Scalars['date']>;
-  status?: InputMaybe<Scalars['String']>;
-  transactionDate?: InputMaybe<Scalars['date']>;
-  updatedAt?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
-/** aggregate stddev on columns */
-export type BankingApp_Stddev_Fields = {
-  __typename?: 'BankingApp_stddev_fields';
-  amount?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_pop on columns */
-export type BankingApp_Stddev_Pop_Fields = {
-  __typename?: 'BankingApp_stddev_pop_fields';
-  amount?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate stddev_samp on columns */
-export type BankingApp_Stddev_Samp_Fields = {
-  __typename?: 'BankingApp_stddev_samp_fields';
-  amount?: Maybe<Scalars['Float']>;
-};
-
-/** Streaming cursor of the table "BankingApp" */
-export type BankingApp_Stream_Cursor_Input = {
+/** Streaming cursor of the table "Accounts" */
+export type Accounts_Stream_Cursor_Input = {
   /** Stream column input with initial value */
-  initial_value: BankingApp_Stream_Cursor_Value_Input;
+  initial_value: Accounts_Stream_Cursor_Value_Input;
   /** cursor ordering */
   ordering?: InputMaybe<Cursor_Ordering>;
 };
 
 /** Initial value of the column from where the streaming should start */
-export type BankingApp_Stream_Cursor_Value_Input = {
-  amount?: InputMaybe<Scalars['money']>;
-  category?: InputMaybe<Scalars['String']>;
-  createdAt?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
+export type Accounts_Stream_Cursor_Value_Input = {
   id?: InputMaybe<Scalars['uuid']>;
-  postDate?: InputMaybe<Scalars['date']>;
-  status?: InputMaybe<Scalars['String']>;
-  transactionDate?: InputMaybe<Scalars['date']>;
-  updatedAt?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
 };
 
-/** aggregate sum on columns */
-export type BankingApp_Sum_Fields = {
-  __typename?: 'BankingApp_sum_fields';
-  amount?: Maybe<Scalars['money']>;
-};
-
-/** update columns of table "BankingApp" */
-export enum BankingApp_Update_Column {
-  /** column name */
-  Amount = 'amount',
-  /** column name */
-  Category = 'category',
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  Description = 'description',
+/** update columns of table "Accounts" */
+export enum Accounts_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
-  PostDate = 'postDate',
-  /** column name */
-  Status = 'status',
-  /** column name */
-  TransactionDate = 'transactionDate',
-  /** column name */
-  UpdatedAt = 'updatedAt'
+  Name = 'name'
 }
 
-export type BankingApp_Updates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<BankingApp_Inc_Input>;
+export type Accounts_Updates = {
   /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<BankingApp_Set_Input>;
+  _set?: InputMaybe<Accounts_Set_Input>;
   /** filter the rows which have to be updated */
-  where: BankingApp_Bool_Exp;
+  where: Accounts_Bool_Exp;
 };
 
-/** aggregate var_pop on columns */
-export type BankingApp_Var_Pop_Fields = {
-  __typename?: 'BankingApp_var_pop_fields';
-  amount?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate var_samp on columns */
-export type BankingApp_Var_Samp_Fields = {
-  __typename?: 'BankingApp_var_samp_fields';
-  amount?: Maybe<Scalars['Float']>;
-};
-
-/** aggregate variance on columns */
-export type BankingApp_Variance_Fields = {
-  __typename?: 'BankingApp_variance_fields';
-  amount?: Maybe<Scalars['Float']>;
+/** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
+export type Int_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['Int']>;
+  _gt?: InputMaybe<Scalars['Int']>;
+  _gte?: InputMaybe<Scalars['Int']>;
+  _in?: InputMaybe<Array<Scalars['Int']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['Int']>;
+  _lte?: InputMaybe<Scalars['Int']>;
+  _neq?: InputMaybe<Scalars['Int']>;
+  _nin?: InputMaybe<Array<Scalars['Int']>>;
 };
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
@@ -329,6 +223,400 @@ export type String_Comparison_Exp = {
   _regex?: InputMaybe<Scalars['String']>;
   /** does the column match the given SQL regular expression */
   _similar?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "Transactions" */
+export type Transactions = {
+  __typename?: 'Transactions';
+  accountId?: Maybe<Scalars['uuid']>;
+  amount: Scalars['money'];
+  category: Scalars['String'];
+  createdAt?: Maybe<Scalars['String']>;
+  description: Scalars['String'];
+  id: Scalars['uuid'];
+  postDate?: Maybe<Scalars['date']>;
+  status: Scalars['String'];
+  transactionDate?: Maybe<Scalars['date']>;
+  updatedAt?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "Transactions" */
+export type Transactions_Aggregate = {
+  __typename?: 'Transactions_aggregate';
+  aggregate?: Maybe<Transactions_Aggregate_Fields>;
+  nodes: Array<Transactions>;
+};
+
+export type Transactions_Aggregate_Bool_Exp = {
+  count?: InputMaybe<Transactions_Aggregate_Bool_Exp_Count>;
+};
+
+export type Transactions_Aggregate_Bool_Exp_Count = {
+  arguments?: InputMaybe<Array<Transactions_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+  filter?: InputMaybe<Transactions_Bool_Exp>;
+  predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "Transactions" */
+export type Transactions_Aggregate_Fields = {
+  __typename?: 'Transactions_aggregate_fields';
+  avg?: Maybe<Transactions_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Transactions_Max_Fields>;
+  min?: Maybe<Transactions_Min_Fields>;
+  stddev?: Maybe<Transactions_Stddev_Fields>;
+  stddev_pop?: Maybe<Transactions_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Transactions_Stddev_Samp_Fields>;
+  sum?: Maybe<Transactions_Sum_Fields>;
+  var_pop?: Maybe<Transactions_Var_Pop_Fields>;
+  var_samp?: Maybe<Transactions_Var_Samp_Fields>;
+  variance?: Maybe<Transactions_Variance_Fields>;
+};
+
+
+/** aggregate fields of "Transactions" */
+export type Transactions_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Transactions_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "Transactions" */
+export type Transactions_Aggregate_Order_By = {
+  avg?: InputMaybe<Transactions_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Transactions_Max_Order_By>;
+  min?: InputMaybe<Transactions_Min_Order_By>;
+  stddev?: InputMaybe<Transactions_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Transactions_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Transactions_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Transactions_Sum_Order_By>;
+  var_pop?: InputMaybe<Transactions_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Transactions_Var_Samp_Order_By>;
+  variance?: InputMaybe<Transactions_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "Transactions" */
+export type Transactions_Arr_Rel_Insert_Input = {
+  data: Array<Transactions_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Transactions_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Transactions_Avg_Fields = {
+  __typename?: 'Transactions_avg_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "Transactions" */
+export type Transactions_Avg_Order_By = {
+  amount?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "Transactions". All fields are combined with a logical 'AND'. */
+export type Transactions_Bool_Exp = {
+  _and?: InputMaybe<Array<Transactions_Bool_Exp>>;
+  _not?: InputMaybe<Transactions_Bool_Exp>;
+  _or?: InputMaybe<Array<Transactions_Bool_Exp>>;
+  accountId?: InputMaybe<Uuid_Comparison_Exp>;
+  amount?: InputMaybe<Money_Comparison_Exp>;
+  category?: InputMaybe<String_Comparison_Exp>;
+  createdAt?: InputMaybe<String_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  postDate?: InputMaybe<Date_Comparison_Exp>;
+  status?: InputMaybe<String_Comparison_Exp>;
+  transactionDate?: InputMaybe<Date_Comparison_Exp>;
+  updatedAt?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "Transactions" */
+export enum Transactions_Constraint {
+  /** unique or primary key constraint on columns "id" */
+  BankingAppPkey = 'BankingApp_pkey'
+}
+
+/** input type for incrementing numeric columns in table "Transactions" */
+export type Transactions_Inc_Input = {
+  amount?: InputMaybe<Scalars['money']>;
+};
+
+/** input type for inserting data into table "Transactions" */
+export type Transactions_Insert_Input = {
+  accountId?: InputMaybe<Scalars['uuid']>;
+  amount?: InputMaybe<Scalars['money']>;
+  category?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  postDate?: InputMaybe<Scalars['date']>;
+  status?: InputMaybe<Scalars['String']>;
+  transactionDate?: InputMaybe<Scalars['date']>;
+  updatedAt?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Transactions_Max_Fields = {
+  __typename?: 'Transactions_max_fields';
+  accountId?: Maybe<Scalars['uuid']>;
+  amount?: Maybe<Scalars['money']>;
+  category?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  postDate?: Maybe<Scalars['date']>;
+  status?: Maybe<Scalars['String']>;
+  transactionDate?: Maybe<Scalars['date']>;
+  updatedAt?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "Transactions" */
+export type Transactions_Max_Order_By = {
+  accountId?: InputMaybe<Order_By>;
+  amount?: InputMaybe<Order_By>;
+  category?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  postDate?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  transactionDate?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Transactions_Min_Fields = {
+  __typename?: 'Transactions_min_fields';
+  accountId?: Maybe<Scalars['uuid']>;
+  amount?: Maybe<Scalars['money']>;
+  category?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  postDate?: Maybe<Scalars['date']>;
+  status?: Maybe<Scalars['String']>;
+  transactionDate?: Maybe<Scalars['date']>;
+  updatedAt?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "Transactions" */
+export type Transactions_Min_Order_By = {
+  accountId?: InputMaybe<Order_By>;
+  amount?: InputMaybe<Order_By>;
+  category?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  postDate?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  transactionDate?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "Transactions" */
+export type Transactions_Mutation_Response = {
+  __typename?: 'Transactions_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Transactions>;
+};
+
+/** on_conflict condition type for table "Transactions" */
+export type Transactions_On_Conflict = {
+  constraint: Transactions_Constraint;
+  update_columns?: Array<Transactions_Update_Column>;
+  where?: InputMaybe<Transactions_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "Transactions". */
+export type Transactions_Order_By = {
+  accountId?: InputMaybe<Order_By>;
+  amount?: InputMaybe<Order_By>;
+  category?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  postDate?: InputMaybe<Order_By>;
+  status?: InputMaybe<Order_By>;
+  transactionDate?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: Transactions */
+export type Transactions_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "Transactions" */
+export enum Transactions_Select_Column {
+  /** column name */
+  AccountId = 'accountId',
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Category = 'category',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  PostDate = 'postDate',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  TransactionDate = 'transactionDate',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** input type for updating data in table "Transactions" */
+export type Transactions_Set_Input = {
+  accountId?: InputMaybe<Scalars['uuid']>;
+  amount?: InputMaybe<Scalars['money']>;
+  category?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  postDate?: InputMaybe<Scalars['date']>;
+  status?: InputMaybe<Scalars['String']>;
+  transactionDate?: InputMaybe<Scalars['date']>;
+  updatedAt?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Transactions_Stddev_Fields = {
+  __typename?: 'Transactions_stddev_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "Transactions" */
+export type Transactions_Stddev_Order_By = {
+  amount?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Transactions_Stddev_Pop_Fields = {
+  __typename?: 'Transactions_stddev_pop_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "Transactions" */
+export type Transactions_Stddev_Pop_Order_By = {
+  amount?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Transactions_Stddev_Samp_Fields = {
+  __typename?: 'Transactions_stddev_samp_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "Transactions" */
+export type Transactions_Stddev_Samp_Order_By = {
+  amount?: InputMaybe<Order_By>;
+};
+
+/** Streaming cursor of the table "Transactions" */
+export type Transactions_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Transactions_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Transactions_Stream_Cursor_Value_Input = {
+  accountId?: InputMaybe<Scalars['uuid']>;
+  amount?: InputMaybe<Scalars['money']>;
+  category?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  postDate?: InputMaybe<Scalars['date']>;
+  status?: InputMaybe<Scalars['String']>;
+  transactionDate?: InputMaybe<Scalars['date']>;
+  updatedAt?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate sum on columns */
+export type Transactions_Sum_Fields = {
+  __typename?: 'Transactions_sum_fields';
+  amount?: Maybe<Scalars['money']>;
+};
+
+/** order by sum() on columns of table "Transactions" */
+export type Transactions_Sum_Order_By = {
+  amount?: InputMaybe<Order_By>;
+};
+
+/** update columns of table "Transactions" */
+export enum Transactions_Update_Column {
+  /** column name */
+  AccountId = 'accountId',
+  /** column name */
+  Amount = 'amount',
+  /** column name */
+  Category = 'category',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  PostDate = 'postDate',
+  /** column name */
+  Status = 'status',
+  /** column name */
+  TransactionDate = 'transactionDate',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+export type Transactions_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Transactions_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Transactions_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Transactions_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Transactions_Var_Pop_Fields = {
+  __typename?: 'Transactions_var_pop_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "Transactions" */
+export type Transactions_Var_Pop_Order_By = {
+  amount?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Transactions_Var_Samp_Fields = {
+  __typename?: 'Transactions_var_samp_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "Transactions" */
+export type Transactions_Var_Samp_Order_By = {
+  amount?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Transactions_Variance_Fields = {
+  __typename?: 'Transactions_variance_fields';
+  amount?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "Transactions" */
+export type Transactions_Variance_Order_By = {
+  amount?: InputMaybe<Order_By>;
 };
 
 /** ordering argument of a cursor */
@@ -368,68 +656,128 @@ export type Money_Comparison_Exp = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
-  /** delete data from the table: "BankingApp" */
-  delete_BankingApp?: Maybe<BankingApp_Mutation_Response>;
-  /** delete single row from the table: "BankingApp" */
-  delete_BankingApp_by_pk?: Maybe<BankingApp>;
-  /** insert data into the table: "BankingApp" */
-  insert_BankingApp?: Maybe<BankingApp_Mutation_Response>;
-  /** insert a single row into the table: "BankingApp" */
-  insert_BankingApp_one?: Maybe<BankingApp>;
-  /** update data of the table: "BankingApp" */
-  update_BankingApp?: Maybe<BankingApp_Mutation_Response>;
-  /** update single row of the table: "BankingApp" */
-  update_BankingApp_by_pk?: Maybe<BankingApp>;
-  /** update multiples rows of table: "BankingApp" */
-  update_BankingApp_many?: Maybe<Array<Maybe<BankingApp_Mutation_Response>>>;
+  /** delete data from the table: "Accounts" */
+  delete_Accounts?: Maybe<Accounts_Mutation_Response>;
+  /** delete single row from the table: "Accounts" */
+  delete_Accounts_by_pk?: Maybe<Accounts>;
+  /** delete data from the table: "Transactions" */
+  delete_Transactions?: Maybe<Transactions_Mutation_Response>;
+  /** delete single row from the table: "Transactions" */
+  delete_Transactions_by_pk?: Maybe<Transactions>;
+  /** insert data into the table: "Accounts" */
+  insert_Accounts?: Maybe<Accounts_Mutation_Response>;
+  /** insert a single row into the table: "Accounts" */
+  insert_Accounts_one?: Maybe<Accounts>;
+  /** insert data into the table: "Transactions" */
+  insert_Transactions?: Maybe<Transactions_Mutation_Response>;
+  /** insert a single row into the table: "Transactions" */
+  insert_Transactions_one?: Maybe<Transactions>;
+  /** update data of the table: "Accounts" */
+  update_Accounts?: Maybe<Accounts_Mutation_Response>;
+  /** update single row of the table: "Accounts" */
+  update_Accounts_by_pk?: Maybe<Accounts>;
+  /** update multiples rows of table: "Accounts" */
+  update_Accounts_many?: Maybe<Array<Maybe<Accounts_Mutation_Response>>>;
+  /** update data of the table: "Transactions" */
+  update_Transactions?: Maybe<Transactions_Mutation_Response>;
+  /** update single row of the table: "Transactions" */
+  update_Transactions_by_pk?: Maybe<Transactions>;
+  /** update multiples rows of table: "Transactions" */
+  update_Transactions_many?: Maybe<Array<Maybe<Transactions_Mutation_Response>>>;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_BankingAppArgs = {
-  where: BankingApp_Bool_Exp;
+export type Mutation_RootDelete_AccountsArgs = {
+  where: Accounts_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_BankingApp_By_PkArgs = {
+export type Mutation_RootDelete_Accounts_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_BankingAppArgs = {
-  objects: Array<BankingApp_Insert_Input>;
-  on_conflict?: InputMaybe<BankingApp_On_Conflict>;
+export type Mutation_RootDelete_TransactionsArgs = {
+  where: Transactions_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_BankingApp_OneArgs = {
-  object: BankingApp_Insert_Input;
-  on_conflict?: InputMaybe<BankingApp_On_Conflict>;
+export type Mutation_RootDelete_Transactions_By_PkArgs = {
+  id: Scalars['uuid'];
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_BankingAppArgs = {
-  _inc?: InputMaybe<BankingApp_Inc_Input>;
-  _set?: InputMaybe<BankingApp_Set_Input>;
-  where: BankingApp_Bool_Exp;
+export type Mutation_RootInsert_AccountsArgs = {
+  objects: Array<Accounts_Insert_Input>;
+  on_conflict?: InputMaybe<Accounts_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_BankingApp_By_PkArgs = {
-  _inc?: InputMaybe<BankingApp_Inc_Input>;
-  _set?: InputMaybe<BankingApp_Set_Input>;
-  pk_columns: BankingApp_Pk_Columns_Input;
+export type Mutation_RootInsert_Accounts_OneArgs = {
+  object: Accounts_Insert_Input;
+  on_conflict?: InputMaybe<Accounts_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_BankingApp_ManyArgs = {
-  updates: Array<BankingApp_Updates>;
+export type Mutation_RootInsert_TransactionsArgs = {
+  objects: Array<Transactions_Insert_Input>;
+  on_conflict?: InputMaybe<Transactions_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Transactions_OneArgs = {
+  object: Transactions_Insert_Input;
+  on_conflict?: InputMaybe<Transactions_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_AccountsArgs = {
+  _set?: InputMaybe<Accounts_Set_Input>;
+  where: Accounts_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Accounts_By_PkArgs = {
+  _set?: InputMaybe<Accounts_Set_Input>;
+  pk_columns: Accounts_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Accounts_ManyArgs = {
+  updates: Array<Accounts_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_TransactionsArgs = {
+  _inc?: InputMaybe<Transactions_Inc_Input>;
+  _set?: InputMaybe<Transactions_Set_Input>;
+  where: Transactions_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Transactions_By_PkArgs = {
+  _inc?: InputMaybe<Transactions_Inc_Input>;
+  _set?: InputMaybe<Transactions_Set_Input>;
+  pk_columns: Transactions_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Transactions_ManyArgs = {
+  updates: Array<Transactions_Updates>;
 };
 
 /** column ordering options */
@@ -450,77 +798,144 @@ export enum Order_By {
 
 export type Query_Root = {
   __typename?: 'query_root';
-  /** fetch data from the table: "BankingApp" */
-  BankingApp: Array<BankingApp>;
-  /** fetch aggregated fields from the table: "BankingApp" */
-  BankingApp_aggregate: BankingApp_Aggregate;
-  /** fetch data from the table: "BankingApp" using primary key columns */
-  BankingApp_by_pk?: Maybe<BankingApp>;
+  /** fetch data from the table: "Accounts" */
+  Accounts: Array<Accounts>;
+  /** fetch aggregated fields from the table: "Accounts" */
+  Accounts_aggregate: Accounts_Aggregate;
+  /** fetch data from the table: "Accounts" using primary key columns */
+  Accounts_by_pk?: Maybe<Accounts>;
+  /** fetch data from the table: "Transactions" */
+  Transactions: Array<Transactions>;
+  /** fetch aggregated fields from the table: "Transactions" */
+  Transactions_aggregate: Transactions_Aggregate;
+  /** fetch data from the table: "Transactions" using primary key columns */
+  Transactions_by_pk?: Maybe<Transactions>;
 };
 
 
-export type Query_RootBankingAppArgs = {
-  distinct_on?: InputMaybe<Array<BankingApp_Select_Column>>;
+export type Query_RootAccountsArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<BankingApp_Order_By>>;
-  where?: InputMaybe<BankingApp_Bool_Exp>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
 };
 
 
-export type Query_RootBankingApp_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<BankingApp_Select_Column>>;
+export type Query_RootAccounts_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<BankingApp_Order_By>>;
-  where?: InputMaybe<BankingApp_Bool_Exp>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
 };
 
 
-export type Query_RootBankingApp_By_PkArgs = {
+export type Query_RootAccounts_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootTransactionsArgs = {
+  distinct_on?: InputMaybe<Array<Transactions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transactions_Order_By>>;
+  where?: InputMaybe<Transactions_Bool_Exp>;
+};
+
+
+export type Query_RootTransactions_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Transactions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transactions_Order_By>>;
+  where?: InputMaybe<Transactions_Bool_Exp>;
+};
+
+
+export type Query_RootTransactions_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 export type Subscription_Root = {
   __typename?: 'subscription_root';
-  /** fetch data from the table: "BankingApp" */
-  BankingApp: Array<BankingApp>;
-  /** fetch aggregated fields from the table: "BankingApp" */
-  BankingApp_aggregate: BankingApp_Aggregate;
-  /** fetch data from the table: "BankingApp" using primary key columns */
-  BankingApp_by_pk?: Maybe<BankingApp>;
-  /** fetch data from the table in a streaming manner: "BankingApp" */
-  BankingApp_stream: Array<BankingApp>;
+  /** fetch data from the table: "Accounts" */
+  Accounts: Array<Accounts>;
+  /** fetch aggregated fields from the table: "Accounts" */
+  Accounts_aggregate: Accounts_Aggregate;
+  /** fetch data from the table: "Accounts" using primary key columns */
+  Accounts_by_pk?: Maybe<Accounts>;
+  /** fetch data from the table in a streaming manner: "Accounts" */
+  Accounts_stream: Array<Accounts>;
+  /** fetch data from the table: "Transactions" */
+  Transactions: Array<Transactions>;
+  /** fetch aggregated fields from the table: "Transactions" */
+  Transactions_aggregate: Transactions_Aggregate;
+  /** fetch data from the table: "Transactions" using primary key columns */
+  Transactions_by_pk?: Maybe<Transactions>;
+  /** fetch data from the table in a streaming manner: "Transactions" */
+  Transactions_stream: Array<Transactions>;
 };
 
 
-export type Subscription_RootBankingAppArgs = {
-  distinct_on?: InputMaybe<Array<BankingApp_Select_Column>>;
+export type Subscription_RootAccountsArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<BankingApp_Order_By>>;
-  where?: InputMaybe<BankingApp_Bool_Exp>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
 };
 
 
-export type Subscription_RootBankingApp_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<BankingApp_Select_Column>>;
+export type Subscription_RootAccounts_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Accounts_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<BankingApp_Order_By>>;
-  where?: InputMaybe<BankingApp_Bool_Exp>;
+  order_by?: InputMaybe<Array<Accounts_Order_By>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
 };
 
 
-export type Subscription_RootBankingApp_By_PkArgs = {
+export type Subscription_RootAccounts_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
 
-export type Subscription_RootBankingApp_StreamArgs = {
+export type Subscription_RootAccounts_StreamArgs = {
   batch_size: Scalars['Int'];
-  cursor: Array<InputMaybe<BankingApp_Stream_Cursor_Input>>;
-  where?: InputMaybe<BankingApp_Bool_Exp>;
+  cursor: Array<InputMaybe<Accounts_Stream_Cursor_Input>>;
+  where?: InputMaybe<Accounts_Bool_Exp>;
+};
+
+
+export type Subscription_RootTransactionsArgs = {
+  distinct_on?: InputMaybe<Array<Transactions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transactions_Order_By>>;
+  where?: InputMaybe<Transactions_Bool_Exp>;
+};
+
+
+export type Subscription_RootTransactions_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Transactions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transactions_Order_By>>;
+  where?: InputMaybe<Transactions_Bool_Exp>;
+};
+
+
+export type Subscription_RootTransactions_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootTransactions_StreamArgs = {
+  batch_size: Scalars['Int'];
+  cursor: Array<InputMaybe<Transactions_Stream_Cursor_Input>>;
+  where?: InputMaybe<Transactions_Bool_Exp>;
 };
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
@@ -537,33 +952,71 @@ export type Uuid_Comparison_Exp = {
 };
 
 export type InsertTransactionsMutationVariables = Exact<{
-  objects: Array<BankingApp_Insert_Input> | BankingApp_Insert_Input;
+  objects: Array<Transactions_Insert_Input> | Transactions_Insert_Input;
 }>;
 
 
-export type InsertTransactionsMutation = { __typename?: 'mutation_root', insert_BankingApp?: { __typename?: 'BankingApp_mutation_response', affected_rows: number } | null };
+export type InsertTransactionsMutation = { __typename?: 'mutation_root', insert_Transactions?: { __typename?: 'Transactions_mutation_response', affected_rows: number } | null };
+
+export type GetCompletedTotalQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetCompletedTotalQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null, nodes: Array<{ __typename?: 'Transactions', amount: any }> } };
+
+export type GetPendingTotalQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPendingTotalQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null, nodes: Array<{ __typename?: 'Transactions', amount: any }> } };
 
 export type GetTotalsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTotalsQuery = { __typename?: 'query_root', BankingApp_aggregate: { __typename?: 'BankingApp_aggregate', aggregate?: { __typename?: 'BankingApp_aggregate_fields', count: number, sum?: { __typename?: 'BankingApp_sum_fields', amount?: any | null } | null } | null, nodes: Array<{ __typename?: 'BankingApp', amount: any }> } };
+export type GetTotalsQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', count: number, sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null, nodes: Array<{ __typename?: 'Transactions', amount: any }> } };
 
 export type GetTransactionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTransactionsQuery = { __typename?: 'query_root', BankingApp: Array<{ __typename?: 'BankingApp', id: any, createdAt?: string | null, updatedAt?: string | null, amount: any, description: string, category: string, status: string, transactionDate?: any | null, postDate?: any | null }> };
+export type GetTransactionsQuery = { __typename?: 'query_root', Transactions: Array<{ __typename?: 'Transactions', id: any, createdAt?: string | null, updatedAt?: string | null, amount: any, description: string, category: string, status: string, transactionDate?: any | null, postDate?: any | null }> };
 
 
 export const InsertTransactionsDocument = gql`
-    mutation insertTransactions($objects: [BankingApp_insert_input!]!) {
-  insert_BankingApp(objects: $objects) {
+    mutation insertTransactions($objects: [Transactions_insert_input!]!) {
+  insert_Transactions(objects: $objects) {
     affected_rows
+  }
+}
+    `;
+export const GetCompletedTotalDocument = gql`
+    query getCompletedTotal {
+  Transactions_aggregate(where: {status: {_eq: "completed"}}) {
+    aggregate {
+      sum {
+        amount
+      }
+    }
+    nodes {
+      amount
+    }
+  }
+}
+    `;
+export const GetPendingTotalDocument = gql`
+    query getPendingTotal {
+  Transactions_aggregate(where: {status: {_eq: "pending"}}) {
+    aggregate {
+      sum {
+        amount
+      }
+    }
+    nodes {
+      amount
+    }
   }
 }
     `;
 export const GetTotalsDocument = gql`
     query getTotals {
-  BankingApp_aggregate {
+  Transactions_aggregate {
     aggregate {
       count
       sum {
@@ -578,7 +1031,7 @@ export const GetTotalsDocument = gql`
     `;
 export const GetTransactionsDocument = gql`
     query getTransactions {
-  BankingApp {
+  Transactions {
     id
     createdAt
     updatedAt
@@ -596,6 +1049,12 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
     insertTransactions(variables: InsertTransactionsMutationVariables, options?: C): Promise<InsertTransactionsMutation> {
       return requester<InsertTransactionsMutation, InsertTransactionsMutationVariables>(InsertTransactionsDocument, variables, options) as Promise<InsertTransactionsMutation>;
+    },
+    getCompletedTotal(variables?: GetCompletedTotalQueryVariables, options?: C): Promise<GetCompletedTotalQuery> {
+      return requester<GetCompletedTotalQuery, GetCompletedTotalQueryVariables>(GetCompletedTotalDocument, variables, options) as Promise<GetCompletedTotalQuery>;
+    },
+    getPendingTotal(variables?: GetPendingTotalQueryVariables, options?: C): Promise<GetPendingTotalQuery> {
+      return requester<GetPendingTotalQuery, GetPendingTotalQueryVariables>(GetPendingTotalDocument, variables, options) as Promise<GetPendingTotalQuery>;
     },
     getTotals(variables?: GetTotalsQueryVariables, options?: C): Promise<GetTotalsQuery> {
       return requester<GetTotalsQuery, GetTotalsQueryVariables>(GetTotalsDocument, variables, options) as Promise<GetTotalsQuery>;

@@ -1,13 +1,15 @@
 <script lang="ts">
 	import type { GetTransactionsDocument, GetTransactionsQuery } from "../graphql/graphql";
-    export let transactions: GetTransactionsQuery['BankingApp'] = [];
+    export let transactions: GetTransactionsQuery['Transactions'] = [];
     export let total: Number;
+    export let completed: Number;
+    export let pending: Number;
 
 </script>
 
 <div>
 
-<h2> Total: {total}</h2>
+<h2> Total All:  {total}   Total Completed:  {completed}   Total Pending:  {pending}</h2>
 
     <table class='table-fixed'>
         <thead class="border-b font-medium dark:border-neutral-500">
