@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import { breadCrumbStore } from '../breadCrumbStore';
 	import GenerateFakeTransaction from '../components/prototype/GenerateFakeTransaction.svelte';
 </script>
 
@@ -28,7 +29,11 @@
 		<div
 			class="h-[4rem] w-full bg-gray-50 flex justify-between items-center align-middle border-b-2 border-gray-200"
 		>
-			<div class="ml-2 font-bold text-green-500  text-xl">Transactions</div>
+			{#each $breadCrumbStore as { name, url }, index}
+			{@const isLast = index === $breadCrumbStore.length - 1}
+			<a class="ml-2 font-bold text-xl underline text-blue-500" href={url}>{name}</a>
+			<span class="ml-2">{isLast ? '' : '>'}</span>
+			{/each}		
 		</div>
 
 		<slot />

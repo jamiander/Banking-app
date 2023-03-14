@@ -1,13 +1,23 @@
-<script>
+<script lang="ts">
+	import { onMount } from 'svelte';
+    import { breadCrumbStore } from '../../breadCrumbStore';
+	import Accounts from '../../components/Accounts.svelte';
+	import type { GetAccountsQuery } from '../../graphql/graphql';
+	import { graphqlGetAccounts } from '../../graphql/graphqlApi';
+
+    let accounts: GetAccountsQuery['Accounts'];
+
+    onMount(async () => {
+        const response = await graphqlGetAccounts({})
+        accounts = response.data.Accounts
+    })
+
+    $breadCrumbStore = [
+        { name: 'Home', url: '/' },
+        { name: 'Accounts', url: '/accounts' }
+    ];
 
 </script>
-
-
 <h1>Accounts</h1>
-<div>
-	<a
-		href="/accounts/db3e7234-c5a1-477b-9ae2-128c23b1d454/transactions"
-		class="underline text-blue-500"
-		>Go to accounts/db3e7234-c5a1-477b-9ae2-128c23b1d454/transactions</a
-	>
-</div>
+
+<Accounts {accounts}></Accounts>

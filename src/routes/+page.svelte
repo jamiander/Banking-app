@@ -1,17 +1,9 @@
 <script lang="ts">
-	//import { breadCrumbStore } from '../breadCrumbStore';
-
-	//$breadCrumbStore = [{ name: 'home', url: '/' }];
+	import { breadCrumbStore } from "../breadCrumbStore";
+	$breadCrumbStore = [{ name: 'Home', url: '/' }];
 </script>
 
 <div>Home</div>
 <div>
 	<a href="/accounts" class="underline text-blue-500">Go to accounts</a>
-</div>
-<div>
-	<a
-		href="/accounts/db3e7234-c5a1-477b-9ae2-128c23b1d454/transactions"
-		class="underline text-blue-500"
-		>Go to accounts/db3e7234-c5a1-477b-9ae2-128c23b1d454/transactions</a
-	>
 </div>
