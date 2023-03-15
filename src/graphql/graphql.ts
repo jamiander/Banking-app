@@ -833,22 +833,30 @@ export type GetAccountsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAccountsQuery = { __typename?: 'query_root', Accounts: Array<{ __typename?: 'Accounts', id: any, name: string }> };
 
-export type GetCompletedTotalQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetCompletedTotalQueryVariables = Exact<{
+  accountId: Scalars['uuid'];
+}>;
 
 
-export type GetCompletedTotalQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null, nodes: Array<{ __typename?: 'Transactions', amount: any }> } };
+export type GetCompletedTotalQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null } };
 
-export type GetPendingTotalQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetPendingTotalQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null, nodes: Array<{ __typename?: 'Transactions', amount: any }> } };
-
-export type GetTotalsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetPendingTotalQueryVariables = Exact<{
+  accountId: Scalars['uuid'];
+}>;
 
 
-export type GetTotalsQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', count: number, sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null, nodes: Array<{ __typename?: 'Transactions', amount: any }> } };
+export type GetPendingTotalQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null } };
 
-export type GetTransactionsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetTotalsQueryVariables = Exact<{
+  accountId: Scalars['uuid'];
+}>;
+
+
+export type GetTotalsQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null } };
+
+export type GetTransactionsQueryVariables = Exact<{
+  accountId: Scalars['uuid'];
+}>;
 
 
 export type GetTransactionsQuery = { __typename?: 'query_root', Transactions: Array<{ __typename?: 'Transactions', id: any, createdAt?: string | null, updatedAt?: string | null, amount: any, description: string, category: string, status: string, transactionDate?: any | null, postDate?: any | null, accountId?: any | null }> };
@@ -870,51 +878,45 @@ export const GetAccountsDocument = gql`
 }
     `;
 export const GetCompletedTotalDocument = gql`
-    query getCompletedTotal {
-  Transactions_aggregate(where: {status: {_eq: "completed"}}) {
+    query getCompletedTotal($accountId: uuid!) {
+  Transactions_aggregate(
+    where: {_and: [{accountId: {_eq: $accountId}}, {status: {_eq: "completed"}}]}
+  ) {
     aggregate {
       sum {
         amount
       }
-    }
-    nodes {
-      amount
     }
   }
 }
     `;
 export const GetPendingTotalDocument = gql`
-    query getPendingTotal {
-  Transactions_aggregate(where: {status: {_eq: "pending"}}) {
+    query getPendingTotal($accountId: uuid!) {
+  Transactions_aggregate(
+    where: {_and: [{accountId: {_eq: $accountId}}, {status: {_eq: "pending"}}]}
+  ) {
     aggregate {
       sum {
         amount
       }
-    }
-    nodes {
-      amount
     }
   }
 }
     `;
 export const GetTotalsDocument = gql`
-    query getTotals {
-  Transactions_aggregate {
+    query getTotals($accountId: uuid!) {
+  Transactions_aggregate(where: {accountId: {_eq: $accountId}}) {
     aggregate {
-      count
       sum {
         amount
       }
-    }
-    nodes {
-      amount
     }
   }
 }
     `;
 export const GetTransactionsDocument = gql`
-    query getTransactions {
-  Transactions {
+    query getTransactions($accountId: uuid!) {
+  Transactions(where: {accountId: {_eq: $accountId}}) {
     id
     createdAt
     updatedAt
@@ -937,16 +939,16 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     getAccounts(variables?: GetAccountsQueryVariables, options?: C): Promise<GetAccountsQuery> {
       return requester<GetAccountsQuery, GetAccountsQueryVariables>(GetAccountsDocument, variables, options) as Promise<GetAccountsQuery>;
     },
-    getCompletedTotal(variables?: GetCompletedTotalQueryVariables, options?: C): Promise<GetCompletedTotalQuery> {
+    getCompletedTotal(variables: GetCompletedTotalQueryVariables, options?: C): Promise<GetCompletedTotalQuery> {
       return requester<GetCompletedTotalQuery, GetCompletedTotalQueryVariables>(GetCompletedTotalDocument, variables, options) as Promise<GetCompletedTotalQuery>;
     },
-    getPendingTotal(variables?: GetPendingTotalQueryVariables, options?: C): Promise<GetPendingTotalQuery> {
+    getPendingTotal(variables: GetPendingTotalQueryVariables, options?: C): Promise<GetPendingTotalQuery> {
       return requester<GetPendingTotalQuery, GetPendingTotalQueryVariables>(GetPendingTotalDocument, variables, options) as Promise<GetPendingTotalQuery>;
     },
-    getTotals(variables?: GetTotalsQueryVariables, options?: C): Promise<GetTotalsQuery> {
+    getTotals(variables: GetTotalsQueryVariables, options?: C): Promise<GetTotalsQuery> {
       return requester<GetTotalsQuery, GetTotalsQueryVariables>(GetTotalsDocument, variables, options) as Promise<GetTotalsQuery>;
     },
-    getTransactions(variables?: GetTransactionsQueryVariables, options?: C): Promise<GetTransactionsQuery> {
+    getTransactions(variables: GetTransactionsQueryVariables, options?: C): Promise<GetTransactionsQuery> {
       return requester<GetTransactionsQuery, GetTransactionsQueryVariables>(GetTransactionsDocument, variables, options) as Promise<GetTransactionsQuery>;
     }
   };

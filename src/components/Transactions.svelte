@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { GetTransactionsDocument, GetTransactionsQuery } from "../graphql/graphql";
-    export let selectedTransactions: GetTransactionsQuery['Transactions'] = [];
+    export let transactions: GetTransactionsQuery['Transactions'] = [];
     export let total: Number;
     export let completed: Number;
     export let pending: Number;
@@ -21,7 +21,7 @@
             <th scope="col" class="px-15 py-4">Post Date</th>
         </thead>
         <tbody>
-            {#each selectedTransactions as transaction }
+            {#each transactions as transaction }
                 <tr>
                     <td class="whitespace-nowrap px-20 py-2">{transaction.amount}</td>
                     <td class="whitespace-nowrap px-20 py-2">{transaction.description}</td>

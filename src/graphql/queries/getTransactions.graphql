@@ -1,5 +1,5 @@
-query getTransactions{
-  Transactions{ 
+query getTransactions($accountId: uuid!){
+  Transactions(where: {accountId: {_eq: $accountId}}){ 
   	id
     createdAt
     updatedAt

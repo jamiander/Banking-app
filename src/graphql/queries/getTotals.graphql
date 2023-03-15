@@ -1,13 +1,9 @@
-query getTotals{
-  Transactions_aggregate {
+query getTotals($accountId: uuid!){
+  Transactions_aggregate(where: {accountId: {_eq: $accountId}}){
     aggregate {
-      count
       sum {
         amount
       }
-    }
-    nodes {
-      amount
     }
   }
 }

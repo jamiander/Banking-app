@@ -1,12 +1,11 @@
-query getPendingTotal{
-  Transactions_aggregate(where: {status: {_eq: "pending"}}){
-    aggregate {
-      sum {
-        amount
+query getPendingTotal($accountId: uuid!){
+  Transactions_aggregate(where: {
+    _and: [{accountId: {_eq: $accountId}}, {status: {_eq: "pending"}}]
+  }) {
+     aggregate {
+        sum {
+          amount
+        }
       }
-    }
-    nodes {
-      amount
-    }
   }
 }

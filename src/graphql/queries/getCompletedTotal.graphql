@@ -1,12 +1,11 @@
-query getCompletedTotal{
-  Transactions_aggregate(where: {status: {_eq: "completed"}}){
-    aggregate {
-      sum {
-        amount
+query getCompletedTotal($accountId: uuid!){
+  Transactions_aggregate(where: {
+    _and: [{accountId: {_eq: $accountId}}, {status: {_eq: "completed"}}]
+  }) {
+     aggregate {
+        sum {
+          amount
+        }
       }
-    }
-    nodes {
-      amount
-    }
   }
 }

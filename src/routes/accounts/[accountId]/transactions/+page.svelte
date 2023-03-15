@@ -15,17 +15,16 @@
     let selectedTransactions: GetTransactionsQuery['Transactions'];
 
     onMount(async () => {
-        const response = await graphqlGetTransactions({});
+        const response = await graphqlGetTransactions({accountId: params.accountId});
         transactions = response.data.Transactions
-        selectedTransactions = transactions.filter(p => p.accountId === params.accountId)
 
-        const result = await graphqlGetTotals({});
+        const result = await graphqlGetTotals({accountId: params.accountId});
         total = result.data.Transactions_aggregate.aggregate?.sum?.amount
 
-        const completedResult = await graphqlGetCompletedTotal({});
+        const completedResult = await graphqlGetCompletedTotal({accountId: params.accountId});
         completed = completedResult.data.Transactions_aggregate.aggregate?.sum?.amount
 
-        const pendingResult = await graphqlGetPendingTotal({});
+        const pendingResult = await graphqlGetPendingTotal({accountId: params.accountId});
         pending = pendingResult.data.Transactions_aggregate.aggregate?.sum?.amount
     })
 
@@ -36,8 +35,8 @@
 			name: 'Account',
 			url: '/accounts'
 		},
-		{ name: 'Transactions', url: '/accounts/[params.accountId]/transactions' }
+		{ name: 'Transactions', url: '/accounts/{params.accountId}/transactions' }
 	];
 </script>
 
-<Transactions {selectedTransactions} {total} {completed} {pending}/>
+<Transactions {transactions} {total} {completed} {pending}/>
