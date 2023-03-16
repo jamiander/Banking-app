@@ -1,17 +1,34 @@
 <script lang="ts">
 	import type { GetTransactionsDocument, GetTransactionsQuery } from "../graphql/graphql";
+    import Time from "svelte-time";
+	import { createEventDispatcher } from "svelte";
     export let transactions: GetTransactionsQuery['Transactions'] = [];
     export let total: Number;
     export let completed: Number;
     export let pending: Number;
+    export let transactionDate: Date;
+    export let limit: Number;
+    export let offset: Number;
+
+    const dispatch = createEventDispatcher();
 
 </script>
 
+<input type="date" bind:value={transactionDate}/>
+
+<h3>Transactions Per Page</h3>
+<input type="number" bind:value={limit}>
+
+<h3>Offset</h3>
+<input type="number" bind:value={offset}/>
+
+<button on:click={() => dispatch('reload')}>Reload</button>
+
+<div class="flex-auto p-6 text-lg font-semibold text-slate-900"> Total All:  {total}   Total Completed:  {completed}   Total Pending:  {pending}</div>
+   
 <div>
 
-<h2> Total All:  {total}   Total Completed:  {completed}   Total Pending:  {pending}</h2>
-
-    <table class='table-fixed'>
+<table class='table-fixed'>
         <thead class="border-b font-medium dark:border-neutral-500">
             <th scope="col" class="px-15 py-4">Amount</th>
             <th scope="col" class="px-15 py-4">Description</th>
