@@ -828,6 +828,14 @@ export type InsertTransactionsMutationVariables = Exact<{
 
 export type InsertTransactionsMutation = { __typename?: 'mutation_root', insert_Transactions?: { __typename?: 'Transactions_mutation_response', affected_rows: number } | null };
 
+export type UpdateTransactionsMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  set?: InputMaybe<Transactions_Set_Input>;
+}>;
+
+
+export type UpdateTransactionsMutation = { __typename?: 'mutation_root', update_Transactions_by_pk?: { __typename?: 'Transactions', id: any, description: string, amount: any } | null };
+
 export type GetAccountsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -855,7 +863,10 @@ export type GetTotalsQueryVariables = Exact<{
 export type GetTotalsQuery = { __typename?: 'query_root', Transactions_aggregate: { __typename?: 'Transactions_aggregate', aggregate?: { __typename?: 'Transactions_aggregate_fields', sum?: { __typename?: 'Transactions_sum_fields', amount?: any | null } | null } | null } };
 
 export type GetTransactionsQueryVariables = Exact<{
-  accountId: Scalars['uuid'];
+  where?: InputMaybe<Transactions_Bool_Exp>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Transactions_Order_By> | Transactions_Order_By>;
 }>;
 
 
@@ -866,6 +877,15 @@ export const InsertTransactionsDocument = gql`
     mutation insertTransactions($objects: [Transactions_insert_input!]!) {
   insert_Transactions(objects: $objects) {
     affected_rows
+  }
+}
+    `;
+export const UpdateTransactionsDocument = gql`
+    mutation UpdateTransactions($id: uuid!, $set: Transactions_set_input) {
+  update_Transactions_by_pk(pk_columns: {id: $id}, _set: $set) {
+    id
+    description
+    amount
   }
 }
     `;
@@ -915,8 +935,13 @@ export const GetTotalsDocument = gql`
 }
     `;
 export const GetTransactionsDocument = gql`
-    query getTransactions($accountId: uuid!) {
-  Transactions(where: {accountId: {_eq: $accountId}}) {
+    query getTransactions($where: Transactions_bool_exp, $limit: Int, $offset: Int, $order_by: [Transactions_order_by!]) {
+  Transactions(
+    where: $where
+    limit: $limit
+    offset: $offset
+    order_by: [{transactionDate: desc}]
+  ) {
     id
     createdAt
     updatedAt
@@ -936,6 +961,9 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     insertTransactions(variables: InsertTransactionsMutationVariables, options?: C): Promise<InsertTransactionsMutation> {
       return requester<InsertTransactionsMutation, InsertTransactionsMutationVariables>(InsertTransactionsDocument, variables, options) as Promise<InsertTransactionsMutation>;
     },
+    UpdateTransactions(variables: UpdateTransactionsMutationVariables, options?: C): Promise<UpdateTransactionsMutation> {
+      return requester<UpdateTransactionsMutation, UpdateTransactionsMutationVariables>(UpdateTransactionsDocument, variables, options) as Promise<UpdateTransactionsMutation>;
+    },
     getAccounts(variables?: GetAccountsQueryVariables, options?: C): Promise<GetAccountsQuery> {
       return requester<GetAccountsQuery, GetAccountsQueryVariables>(GetAccountsDocument, variables, options) as Promise<GetAccountsQuery>;
     },
@@ -948,7 +976,7 @@ export function getSdk<C, E>(requester: Requester<C, E>) {
     getTotals(variables: GetTotalsQueryVariables, options?: C): Promise<GetTotalsQuery> {
       return requester<GetTotalsQuery, GetTotalsQueryVariables>(GetTotalsDocument, variables, options) as Promise<GetTotalsQuery>;
     },
-    getTransactions(variables: GetTransactionsQueryVariables, options?: C): Promise<GetTransactionsQuery> {
+    getTransactions(variables?: GetTransactionsQueryVariables, options?: C): Promise<GetTransactionsQuery> {
       return requester<GetTransactionsQuery, GetTransactionsQueryVariables>(GetTransactionsDocument, variables, options) as Promise<GetTransactionsQuery>;
     }
   };

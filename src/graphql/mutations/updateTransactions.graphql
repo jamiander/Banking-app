@@ -1,0 +1,8 @@
+mutation UpdateTransactions($id: uuid!, $set: Transactions_set_input) {
+  update_Transactions_by_pk(pk_columns: {id: $id}, _set: $set)
+  {
+    id
+    description
+    amount
+  }
+}
