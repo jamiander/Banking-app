@@ -1,4 +1,4 @@
-import { GetAccountsDocument, GetCompletedTotalDocument, GetPendingTotalDocument, GetTotalsDocument, GetTransactionsDocument, type GetAccountsQuery, type GetAccountsQueryVariables, type GetCompletedTotalQuery, type GetCompletedTotalQueryVariables, type GetFilteredTransactionsQuery, type GetFilteredTransactionsQueryVariables, type GetPendingTotalQuery, type GetPendingTotalQueryVariables, type GetTotalsQuery, type GetTotalsQueryVariables, type GetTransactionsQuery, type GetTransactionsQueryVariables, type UpdateTransactionsMutation, type UpdateTransactionsMutationVariables } from "./graphql";
+import { GetAccountsDocument, GetCompletedTotalDocument, GetPendingTotalDocument, GetTotalsDocument, GetTransactionsDocument, UpdateTransactionsDocument, type GetAccountsQuery, type GetAccountsQueryVariables, type GetCompletedTotalQuery, type GetCompletedTotalQueryVariables, type GetFilteredTransactionsQuery, type GetFilteredTransactionsQueryVariables, type GetPendingTotalQuery, type GetPendingTotalQueryVariables, type GetTotalsQuery, type GetTotalsQueryVariables, type GetTransactionsQuery, type GetTransactionsQueryVariables, type UpdateTransactionsMutation, type UpdateTransactionsMutationVariables } from "./graphql";
 import { print } from "graphql";
 import { env } from "$env/dynamic/public";
 
@@ -77,7 +77,7 @@ export async function graphqlUpdateTransactions(variables: UpdateTransactionsMut
         method: 'POST',
         headers,
         body: JSON.stringify({
-          query: print(GetAccountsDocument),
+          query: print(UpdateTransactionsDocument),
           variables
         })
     })

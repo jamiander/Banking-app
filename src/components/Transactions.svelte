@@ -9,11 +9,25 @@
     export let limit: Number;
     export let offset: Number;
     export let category: String = "All";
+    export let description: string;
+    export let amount: number;
+    export let id: number;
 
     let items = [5, 10, 15]
     let selections = ["All", "food", "entertainment", "utilities"]
 
     const dispatch = createEventDispatcher();
+
+    function getInputValue(target: EventTarget | null): string {
+        if (
+            target instanceof HTMLInputElement ||
+            target instanceof HTMLSelectElement ||
+            target instanceof HTMLTextAreaElement
+        ) {
+            return target.value;
+        }
+         throw new Error('Wrong type');
+}
     
 </script>
 
@@ -68,7 +82,7 @@
 <button on:click={() => dispatch('reload')}>Reload</button>
 </div>
 <div class="flex-auto p-6 text-lg font-semibold text-slate-900"> Total All:  {total}   Total Completed:  {completed}   Total Pending:  {pending}</div>
-   
+<button on:click={() => dispatch('update')}>Save Changes</button> 
 <div>
 
 <table class='table-fixed'>
@@ -83,16 +97,39 @@
         <tbody>
             {#each transactions as transaction }
                 <tr>
-                    <td class="whitespace-nowrap px-20 py-2">{transaction.amount}</td>
-                    <td class="whitespace-nowrap px-20 py-2">{transaction.description}</td>
-                    <td class="whitespace-nowrap px-20 py-2">{transaction.category}</td>
+                    <td>
+                    <input on:change={(e) => {
+                        amount=+getInputValue(e.target);
+                        id=transaction.id;
+                    }} 
+                    class="whitespace-nowrap px-20 py-2" value={transaction.amount}>
+                    </td>
+                    <td>
+                    <input on:change={(e) => {
+                        description=getInputValue(e.target);
+                        id=transaction.id;
+                    }} 
+                    class="whitespace-nowrap px-20 py-2" value={transaction.description}>
+                    </td>
+                    <td>
+                    <input on:change={(e) => {
+                        category=getInputValue(e.target);
+                        id=transaction.id;
+                    }} 
+                    class="whitespace-nowrap px-20 py-2" value={transaction.category}>
+                    </td>
                     <td class="whitespace-nowrap px-20 py-2">{transaction.transactionDate}</td>
-                    <td class="whitespace-nowrap px-20 py-2">{transaction.status}</td>
+                    <td>
+                    <input on:change={(e) => {
+                        status=getInputValue(e.target);
+                        id=transaction.id;
+                    }} 
+                    class="whitespace-nowrap px-20 py-2" value={transaction.status}>
+                    </td>
                     <td class="whitespace-nowrap px-20 py-2">{transaction.postDate}</td>
                 </tr>
             {/each}
         </tbody>
     </table>
-
 </div>
    

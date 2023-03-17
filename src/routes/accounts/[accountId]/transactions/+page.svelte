@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import type { GetTransactionsQuery, Transactions_Bool_Exp, Transactions_Order_By } from '../../../../graphql/graphql';
+	import type { GetTransactionsQuery, Transactions_Bool_Exp, Transactions_Set_Input } from '../../../../graphql/graphql';
 	import { graphqlGetCompletedTotal, graphqlGetPendingTotal, graphqlGetTotals, graphqlGetTransactions, graphqlUpdateTransactions } from '../../../../graphql/graphqlApi';
     import Transactions from '../../../../components/Transactions.svelte'
 	import { breadCrumbStore } from "../../../../breadCrumbStore";
 	import { page } from "$app/stores";
-	import { stringify } from "postcss";
+
     let params = $page.params
 	let route = $page.route.id;
 
@@ -17,8 +17,9 @@
     let total: Number;
     let completed: Number;
     let pending: Number;
-
-    let set: {description: string, amount: number};
+    let id: number;
+    let amount: number;
+    let description: string;
 
     onMount(async () => {
         await loadTransactions(transactionDate, limit, offset, category);
@@ -42,10 +43,11 @@
         pending = pendingResult.data.Transactions_aggregate.aggregate?.sum?.amount
     }
 
-    async function updateTransaction(id: number, set: {description: string, amount: number})
+    async function updateTransaction(id: number, description: string, amount: number)
     {
-        const response = await graphqlUpdateTransactions({id: id, set: set})
-    }
+        let set:Transactions_Set_Input = {description, amount};
+        const response = await graphqlUpdateTransactions({id: id, set: set});
+    } 
 
     $breadCrumbStore = [
 		{ name: 'Home', url: '/' },
@@ -61,4 +63,5 @@
 
 <Transactions {transactions} {total} {completed} {pending} bind:transactionDate = {transactionDate} 
 bind:limit = {limit} bind:offset = {offset} bind:category = {category} on:reload={
-() => loadTransactions(transactionDate, limit, offset, category)}/>
+() => loadTransactions(transactionDate, limit, offset, category)} bind:description = {description} 
+bind:amount = {amount} bind:id = {id} on:update={() => updateTransaction(id, description, amount)}/>
